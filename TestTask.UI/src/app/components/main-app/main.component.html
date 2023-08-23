@@ -1,0 +1,33 @@
+<div class="page">
+  <div class="menu">
+    <a routerLink="/"><button class="border">Orders</button></a>
+    <button class="border">Products</button>
+    <button class="border">Customers</button>
+  </div>
+  <div class="main border">
+    <div class="headerOrders">
+      <h2>Orders</h2>
+      <a routerLink="/newOrder"><button class="border">New Order</button></a>
+    </div>
+    <div>
+      <table class="border">
+        <thead>
+          <th>Order Number</th>
+          <th>Customer Name</th>
+          <th>Customer Address</th>
+          <th>Total Cost</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.client.name }}</td>
+            <td>{{ order.client.address }}</td>
+            <td>{{ order.totalCost }}</td>
+            <td>{{ order.status.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

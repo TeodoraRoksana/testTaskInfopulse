@@ -1,0 +1,82 @@
+<div class="page" *ngIf="newOrder">
+    <div class="menu">
+      <a routerLink="/"><button class="border">Orders</button></a>
+      <button class="border">Products</button>
+      <button class="border">Customers</button>
+    </div>
+
+    <div class="main border">
+      <div class="headerOrders">
+        <h2>New Order</h2>
+      </div>
+      <form>
+        <div class="headerOrders orderInfo">
+          <p>Order Number: 12</p>
+          <p>Order Date: {{newOrder.date | date:'dd.MM.yyyy'}}</p>
+        </div>
+        <div class="headerOrders selectData">
+          <p>Customer:</p>
+            <select #custoner="ngModel" name="customer" [(ngModel)]="newOrder.client.customerId" required>
+              <option *ngFor="let customer of customers" value="{{customer.customerId}}">{{ customer.name }}</option>
+            </select>
+            <span style="color:red" *ngIf="custoner.errors?.['required'] && custoner.touched">
+              Customer must be selected!
+            </span>
+          
+        </div>
+        <div class="headerOrders selectData">
+        <p>Status:</p>
+
+          <select #status="ngModel" name="status" [(ngModel)]="newOrder.status.statusId" required placeholder="Emojy">
+                
+            <option *ngFor="let dddd of statuses" value="{{dddd.statusId}}">{{ dddd.name }}</option>
+          </select>
+          <span style="color:red" *ngIf="status.errors?.['required'] && status.touched">
+            Status must be selected!
+          </span>
+        </div>
+        <p>Total Cost: $ {{newOrder.totalCost}}</p>
+        <div class="headerOrders">
+        <p><i>Add Products:</i></p>
+        <button class="border add-button" (click)="addProductsToOrder()">Add products to Order</button>
+        </div>
+        <div>
+          <table class="border">
+            <thead>
+              <th>Product Id</th>
+              <th>Product Name</th>
+              <th>Product Category</th>
+              <th>Product Size</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of newOrder.productsInOrder">
+                <td>{{ product.product.productId }}</td>
+                <td>{{ product.product.name }}</td>
+                <td>{{ product.product.category.name }}</td>
+                <td>{{ product.productSize.name }}</td>
+                <td>{{ product.orderQuantity }}</td>
+                <td>{{ product.product.price }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="headerOrders comment">
+        <p>
+          Comment:</p>
+          <textarea class="border" #comment="ngModel" name="comment" [(ngModel)]="newOrder.comment"></textarea>
+        </div>
+        <div class="headerOrders button-submit">
+        <input type="submit" class="border custom-button" (click)="saveOrder(newOrder)" [ariaColSpan]="1" [disabled]="status.errors?.['required'] || custoner.errors?.['required']" value="Save">
+        <a routerLink="/"><button class="border" (click)="cancel()">Cancel</button></a>
+      </div>
+    </form>
+    
+    </div>
+  </div>
+
+ 
+
+

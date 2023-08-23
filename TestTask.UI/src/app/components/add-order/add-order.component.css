@@ -1,0 +1,32 @@
+.add-button{
+    width: 150px;
+    height: 30px;
+}
+
+textarea{
+    width: 500px;
+    height: 100px;
+}
+
+.comment{
+    align-items: flex-start;
+    margin-right: 150px;
+}
+
+.orderInfo{
+    margin-right: 350px;
+}
+
+select{
+    width: 100px;
+    height: 30px;
+}
+
+.selectData{
+    margin-right: 550px;
+}
+
+.button-submit{
+    margin-left: 75%;
+}
+
